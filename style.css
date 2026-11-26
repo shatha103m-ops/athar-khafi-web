@@ -32,4 +32,88 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
+
+  const revealAnswerBtn = document.getElementById('reveal-answer-btn');
+  const puzzleAnswer = document.getElementById('puzzle-answer');
+
+  if (revealAnswerBtn && puzzleAnswer) {
+    revealAnswerBtn.addEventListener('click', () => {
+      const isHidden = puzzleAnswer.hidden;
+      puzzleAnswer.hidden = !isHidden;
+      revealAnswerBtn.textContent = isHidden ? 'إخفاء الحل' : 'كشف الحل';
+    });
+  }
+
+  const whispers = [
+    'ليس كل ما يُقال يُسمع، وليس كل أثر يحتاج إلى ضجيج.',
+    'الخطوات الهادئة الثابتة تبلغ ما تعجز عنه العجلة.',
+    'في التفاصيل الصغيرة يختبئ المعنى الذي يبحث عنه القلب.'
+  ];
+
+  let whisperIndex = 0;
+  const whisperText = document.getElementById('whisper-text');
+  const nextWhisperBtn = document.getElementById('next-whisper-btn');
+  const copyWhisperBtn = document.getElementById('copy-whisper-btn');
+  const copyStatus = document.getElementById('copy-status');
+
+  if (nextWhisperBtn && whisperText) {
+    nextWhisperBtn.addEventListener('click', () => {
+      whisperIndex = (whisperIndex + 1) % whispers.length;
+      whisperText.textContent = whispers[whisperIndex];
+      if (copyStatus) copyStatus.textContent = '';
+    });
+  }
+
+  if (copyWhisperBtn && whisperText) {
+    copyWhisperBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(whisperText.textContent || '');
+        if (copyStatus) copyStatus.textContent = 'تم نسخ الهمسة.';
+      } catch (_) {
+        if (copyStatus) copyStatus.textContent = 'انسخي النص مباشرة من البطاقة.';
+      }
+    });
+  }
+
+  const newsletterForm = document.getElementById('newsletter-form');
+  const formFeedback = document.getElementById('form-feedback');
+  const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+
+  if (newsletterForm && formFeedback) {
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const emailInput = document.getElementById('subscriber-email');
+      const consentInput = newsletterForm.querySelector('input[name="consent"]');
+      const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+
+      if (!emailVal || (consentInput && !consentInput.checked)) return;
+
+      const originalBtnText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'جاري الإرسال...';
+      }
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: 'اشتراك جديد في نشرة أثر خفي',
+            from_name: 'أثر خفي',
+            email: emailVal,
+            consent: 'yes'
+          })
+        });
+
+        const result = await response.json();
+
+        formFeedback.hidden = false;
+        if (result.success) {
+          formFeedback.textContent = `تم
