@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أثر خفي — تجربة تفاعلية</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">أثر خفي</a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="فتح القائمة">☰</button>
+      <nav id="main-nav" class="main-nav">
+        <a href="#stories">الحكايات</a>
+        <a href="#puzzles">الألغاز</a>
+        <a href="#whispers">همسات اليوم</a>
+        <a href="#newsletter">النشرة</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <span class="badge">إصدار خاص</span>
+        <h1>أثر خفي</h1>
+        <p class="hero-subtitle">مساحة هادئة تجمع بين الحكايات العميقة، الألغاز الذكية، وهمسات اليوم.</p>
+        <a href="#stories" class="btn btn-gold">ابدأ الرحلة</a>
+      </div>
+    </section>
+
+    <section id="stories" class="section">
+      <div class="container">
+        <h2>الحكايات</h2>
+        <div class="grid-2">
+          <article class="card">
+            <div class="image-slot" data-image-slot="story-1">مساحة صورة الحكاية الأولى</div>
+            <h3>ظل في آخر الممر</h3>
+            <p>أحيانًا يبدأ الأثر الحقيقي من تفصيل صغير لا يلتفت إليه أحد في اللحظة الأولى.</p>
+          </article>
+          <article class="card">
+            <div class="image-slot" data-image-slot="story-2">مساحة صورة الحكاية الثانية</div>
+            <h3>رسالة لم تُفتح</h3>
+            <p>بين السطور المنسية تختبئ إجابات لأسئلة ظننا أنها أُغلقت للأبد.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="puzzles" class="section section-alt">
+      <div class="container">
+        <h2>لغز اليوم</h2>
+        <div class="card puzzle-card">
+          <p>شيء يرافقك دون أن يترك ظلالًا، ويكبر كلما شاركته، ويصغر كلما كتمته. ما هو؟</p>
+          <button id="reveal-answer-btn" type="button" class="btn btn-outline">كشف الحل</button>
+          <p id="puzzle-answer" class="answer-box" hidden>السر أو الهمّ — كلما بُحت به اتسع أثره، وكلما احتفظت به في سكينة خفّ.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="whispers" class="section">
+      <div class="container">
+        <h2>همسات اليوم</h2>
+        <div class="card whisper-card">
+          <p id="whisper-text" class="whisper-text">ليس كل ما يُقال يُسمع، وليس كل أثر يحتاج إلى ضجيج.</p>
+          <div class="actions-row">
+            <button id="next-whisper-btn" type="button" class="btn btn-gold">همسة أخرى</button>
+            <button id="copy-whisper-btn" type="button" class="btn btn-outline">نسخ الهمسة</button>
+          </div>
+          <p id="copy-status" class="feedback-text" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section section-alt">
+      <div class="container">
+        <h2>النشرة البريدية</h2>
+        <p class="section-desc">اشتركي لتصلكِ الرسائل والحكايات الجديدة مباشرة على بريدك.</p>
+        <form id="newsletter-form" class="card newsletter-form">
+          <label for="subscriber-email">البريد الإلكتروني</label>
+          <input id="subscriber-email" name="email" type="email" required placeholder="name@example.com" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="consent" required />
+            <span>أوافق على استلام رسائل «أثر خفي» عبر البريد الإلكتروني.</span>
+          </label>
+          <button type="submit" class="btn btn-gold">انضم إلى القائمة</button>
+          <p id="form-feedback" class="feedback-text" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© أثر خفي — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
