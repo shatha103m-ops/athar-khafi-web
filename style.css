@@ -6,7 +6,7 @@
   --muted: #b6b0a4;
   --gold: #d4af37;
   --gold-hover: #e5c454;
-  --border: rgba(212, 175, 55, 0.22);
+  --border: rgba(212, 175, 55, 0.25);
 }
 
 * {
@@ -21,8 +21,8 @@ html {
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: #0c0c0f;
+  color: #f3efe6;
   line-height: 1.7;
 }
 
@@ -34,13 +34,14 @@ body {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: rgba(12, 12, 15, 0.9);
+  z-index: 100;
+  background: rgba(12, 12, 15, 0.96);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 
 .header-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,19 +72,24 @@ body {
 
 .menu-toggle {
   display: none;
-  background: transparent;
+  background: var(--surface);
   color: var(--gold);
-  border: 1px solid var(--border);
+  border: 1px solid var(--gold);
   border-radius: 8px;
-  padding: 0.3rem 0.65rem;
-  font-size: 1.1rem;
+  padding: 0.35rem 0.7rem;
+  font-size: 1.15rem;
+  line-height: 1;
   cursor: pointer;
+}
+
+section[id] {
+  scroll-margin-top: 76px;
 }
 
 .hero {
   padding: 5rem 0 4rem;
   text-align: center;
-  background: radial-gradient(circle at top, rgba(212, 175, 55, 0.14), transparent 65%);
+  background: radial-gradient(circle at top, rgba(212, 175, 55, 0.16), transparent 65%);
 }
 
 .badge {
@@ -253,22 +259,36 @@ body {
 
 @media (max-width: 700px) {
   .menu-toggle {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .main-nav {
     display: none;
     position: absolute;
-    top: 64px;
+    top: 100%;
     left: 0;
     right: 0;
-    background: var(--surface);
+    z-index: 101;
+    background: #15151b;
     border-bottom: 1px solid var(--border);
     flex-direction: column;
-    padding: 1rem 5%;
+    gap: 0.25rem;
+    padding: 0.75rem 5%;
   }
 
   .main-nav.open {
     display: flex;
+  }
+
+  .main-nav a {
+    padding: 0.65rem 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+  }
+
+  .main-nav a:last-child {
+    border-bottom: none;
   }
 }
